@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    background-color: lightyellow;
+    padding: 10rem;
+    font-family: Arial, sans-serif; 
+}
+
+.container {
+    text-align: center;
+}
+
+#authPage {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+button {
+    width: 100%;
+    padding: 0.5em;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+</style>
+<body>
+    <div class="container">
+        <h1>Welcome to our App</h1>
+        <div id="authPage">
+            <h2>Login</h2>
+            <input type="text" id="loginUsername" placeholder="Username"><br>
+            <input type="password" id="loginPassword" placeholder="Password"><br>
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            window.location.href = 'product.html';
+        }
+    </script>
+</body>
+</html>

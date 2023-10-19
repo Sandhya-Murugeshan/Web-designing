@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Product Page</h2>
+        <div class="search-bar">
+            <input type="text" id="productSearch" placeholder="Search by product name">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+        <div id="productCards"></div>
+    </div>
+
+    <script>
+        // Fetch products from the API
+        function fetchProductsFromAPI() {
+            fetch('https://fakestoreapi.com/products')
+                .then(res => res.json())
+                .then(products => displayProducts(products))
+                .catch(error => console.error('Error fetching products:', error));
+        }
+
+        // Display products on the page
+        function displayProducts(products) {
+            const productCards = document.getElementById('productCards');
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.title}">
+                    <h3>${product.title}</h3>
+                    <p>${product.description}</p>
+                `;
+                productCards.appendChild(card);
+            });
+        }
+
+        // Call fetchProductsFromAPI when the product page loads
+        window.onload = function () {
+            fetchProductsFromAPI();
+        };
+
+        // Search products based on the input value
+        function searchProducts() {
+            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
+            const productCards = document.getElementById('productCards');
+            const cards = productCards.getElementsByClassName('card');
+
+            Array.from(cards).forEach(card => {
+                const productName = card.querySelector('h3').textContent.toLowerCase();
+                if (productName.includes(searchTerm) || searchTerm === "") {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Product Page</h2>
+        <div class="search-bar">
+            <input type="text" id="productSearch" placeholder="Search by product name">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+        <div id="productCards"></div>
+    </div>
+
+    <script>
+        // Simulated product fetching from an API
+        function fetchProducts() {
+            // Replace this with actual API fetch logic
+            const products = [
+                { name: 'Product 1', description:' White Women casual shoes', image: 'image1.jpg' },
+                { name: 'Product 2', description: 'Women casual shoes', image: 'image3.jpg' },
+                { name: 'Product 3', description: 'Blue casual shoes', image: 'image2.jpg' },
+                { name: 'Product 4', description: 'pink cut shoes', image: 'image7.jpg' },
+                { name: 'Product 5', description: 'simple white footwear', image: 'image5.jpg' },
+                { name: 'Product 6', description: 'Buy women casual shoes', image: 'image6.jpg' },
+                { name: 'Product 7', description:' Women Multicolor Casual Shoes', image: 'image4.jpg' },
+                { name: 'Product 8', description: 'Women casual shoes', image: 'image8.jpg' },
+                { name: 'Product 9', description: 'Black casual shoes', image: 'image9.jpg' },
+                { name: 'Product 10', description: 'Women grey Casual Shoes', image: 'image10.jpg' },
+                { name: 'Product 11', description: 'simple pastel color footwear', image: 'image11.jpg' },
+                { name: 'Product 12', description: ' women casual shoes', image: 'image12.jpg' },
+            ];
+
+            const productCards = document.getElementById('productCards');
+
+            products.forEach((product, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                `;
+                productCards.appendChild(card);
+            });
+        }
+
+        // Call fetchProducts when the product page loads
+        window.onload = function() {
+            fetchProducts();
+        };
+
+        // Search products based on the input value
+        function searchProducts() {
+            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
+            const productCards = document.getElementById('productCards');
+            const cards = productCards.getElementsByClassName('card');
+
+            Array.from(cards).forEach(card => {
+                const productName = card.querySelector('h3').textContent.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
